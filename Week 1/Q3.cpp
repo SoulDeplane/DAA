@@ -21,7 +21,7 @@ void jsearch(int a[], int n, int k)
 }
 main()
 {
-  int n, k, c=0, i;
+  int n, k, i;
   cout<<"Enter size: ";
   cin>>n;
   int a[n];
