@@ -18,7 +18,7 @@ void sort(int *arr, int n)
           			j--;
       			}
       			else
-        				break;
+        			break;
     		}
     		arr[j+1]=t;
     		s++;
