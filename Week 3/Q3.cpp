@@ -1,4 +1,5 @@
 /*Given an unsorted array of positive integers, design an algorithm and implement it using a program to find whether there are any duplicate elements in the array or not. (use sorting) (Time Complexity = O(n log n)) */
+
 #include <iostream>
 using namespace std;
 int part(int *a, int l, int r)
@@ -40,11 +41,17 @@ void Dup(int *a, int n) {
 }
 main()
 {
-    int n;
-    cout << "Enter size: ";
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-    Dup(a, n);
+    int n, t;
+    cout<<"Enter no. of test cases: ";
+    cin>>t;
+    while(t>0)
+    {
+        cout << "Enter size: ";
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
+        Dup(a, n);
+        t--;
+    }
 }
