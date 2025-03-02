@@ -1,23 +1,18 @@
-/*Given an unsorted array of integers, design an algorithm and implement it using a program to find Kth smallest or largest element in the array. (Worst case Time Complexity = O(n^2)) */
+/*Given an unsorted array of integers, design an algorithm and implement it using a program to find Kth smallest or largest element in the array. (Worst case Time Complexity = O(n)) */
 #include<iostream>
 using namespace std;
-void sort(int *a, int n)
+void sort(int *a, int n, int m)
 {
-    int i, j, s;
+    int *c=(int*)calloc(m+1, sizeof(int)), in=0, i;
     for(i=0; i<n; i++)
+        c[a[i]]++;
+    for(i=0; i<=m; i++)
     {
-        s=0;
-        for(j=0; j<n-i-1;j++)
+        while(c[i]>0)
         {
-            if(a[i]>a[j+1])
-            {
-                swap(a[i], a[j+1]);
-                s++;
-                
-            }
+            a[in++]=i;
+            c[i]--;
         }
-        if(s==0)
-            return;
     }
 }
 int find(int *a, int n, int k, int c)
@@ -26,32 +21,36 @@ int find(int *a, int n, int k, int c)
         cout<<"K is larger than size of array"<<endl;
     else
     {
-        sort(a, n);
-        if(c==0)
-            return a[k];
+        if(c==1)
+          return a[k-1];
         else
-            return a[n-k];
+          return a[n-k];
     }
     return -1;
 }
 main()
 {
-    int n, i, t, k, c;
-	  cout<<"Enter no. of test cases: ";
-	  cin>>t;
-	  while(t>0)
-	  {
-	  			cout<<"Enter size: ";
-	  			cin>>n;
-	  			int a[n];
-	  			for(i=0; i<n; i++)
-	    				cin>>a[i];
-	    		cout<<"Enter the value of k: ";
-	    		cin>>k;
-	    		cout<<"1-Smallest\n2-Largest\nEnter choice: ";
-	    		cin>>c;
-	    		if((k=find(a, n, k, c))!=-1)
-	  			    cout<<"Smallest "<<k<<"th element is: "<<k<<endl;
-					t--;
-		}
+  int n, i, t, k, c, m;
+	cout<<"Enter no. of test cases: ";
+  cin>>t;
+	while(t>0)
+	{
+	  	cout<<"Enter size: ";
+	  	cin>>n;
+	  	int a[n];
+	  	for(i=0; i<n; i++)
+	  	{
+	    		cin>>a[i];
+	    		if(a[i]>m)
+	    			m=a[i];
+	  	}
+	    sort(a, n, m);
+	    cout<<"Enter the value of k: ";
+	    cin>>k;
+	    cout<<"1-Smallest\n2-Largest\nEnter choice: ";
+	    cin>>c;
+	    if((c=find(a, n, k, c))!=-1)
+	  	    cout<<"The element is: "<<c<<endl;
+			t--;
+	}
 }
